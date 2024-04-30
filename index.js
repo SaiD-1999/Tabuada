@@ -21,7 +21,7 @@ function tabuadas(requisicao, resposta){
     let tabuada = requisicao.query.tabuada;
     let sequencia = requisicao.query.sequencia;
     if(!sequencia){
-        sequencia = 1;
+        sequencia = 10;
     }
     resposta.write('<!DOCTYPE html>');
     resposta.write('<html>');
