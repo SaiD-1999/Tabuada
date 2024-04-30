@@ -18,7 +18,7 @@ function paginaInicial(requisicao, resposta){
 };
 
 function tabuadas(requisicao, resposta){
-    let numero = requisicao.query.numero;
+    let tabuada = requisicao.query.tabuada;
     let sequencia = requisicao.query.sequencia;
     if(!sequencia){
         sequencia = 1;
@@ -30,21 +30,21 @@ function tabuadas(requisicao, resposta){
     resposta.write('<title>Página Inicia</title>');
     resposta.write('</head>');
     resposta.write('<body>');
-    if(numero){
+    if(tabuada){
         for(let i = 0; i <= sequencia; i++){
-            const resultado = numero * i;
-            resposta.write('<h1>' + numero + ' X ' + i + ' = ' + resultado + '</h1>');  
+            const resultado = tabuada * i;
+            resposta.write('<h1>' + tabuada + ' X ' + i + ' = ' + resultado + '</h1>');  
         }
     }
     else{
-        resposta.write('<h1>Informe o parâmetro numero na url: http://localhost:3000/tabuada?numero=0</h1>');
+        resposta.write('<h1>Informe o parâmetro tabuada na url: http://localhost:3000/?tabuada=0</h1>');
     }
     resposta.write('</body>');
     resposta.write('</html>');
     resposta.end();
 };
 
-app.get("/tabuada", tabuadas);
+app.get("/?", tabuadas);
 app.get("/", paginaInicial);
 app.listen(porta, host, () => {
     console.log("Servidor esta executando em http://" + host + ":" + porta);
