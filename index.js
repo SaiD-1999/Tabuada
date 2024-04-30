@@ -17,8 +17,12 @@ function paginaInicial(requisicao, resposta){
     resposta.end();
 };
 
-function tabuadas(reqisicao, resposta){
-    let valor = reqisicao.query.numero;
+function tabuadas(requisicao, resposta){
+    let numero = requisicao.query.numero;
+    let sequencia = requisicao.query.sequencia;
+    if(!sequencia){
+        sequencia = 1;
+    }
     resposta.write('<!DOCTYPE html>');
     resposta.write('<html>');
     resposta.write('<head>');
@@ -26,7 +30,15 @@ function tabuadas(reqisicao, resposta){
     resposta.write('<title>Página Inicia</title>');
     resposta.write('</head>');
     resposta.write('<body>');
-    resposta.write('<h1>Tabuada</h1>');
+    if(numero){
+        for(let i = 0; i <= sequencia; i++){
+            const resultado = numero * i;
+            resposta.write('<h1>' + numero + ' X ' + i + ' = ' + resultado + '</h1>');  
+        }
+    }
+    else{
+        resposta.write('<h1>Informe o parâmetro numero na url: http://localhost:3000/tabuada?numero=0</h1>');
+    }
     resposta.write('</body>');
     resposta.write('</html>');
     resposta.end();
